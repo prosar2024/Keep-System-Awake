@@ -15,30 +15,34 @@ var mouseThread : Thread
 var frame = new JFrame("Keep System Alive")
 
 var timeInputLabel = new JLabel("How long (in mins) do you want to keep the system active? ")
-timeInputLabel.setBounds(20, 20, 1000, 30)
+timeInputLabel.setBounds(20, 10, 1000, 30)
 
 var timeInput = new JTextField()
 timeInput.setText(executionTime as String)
-timeInput.setBounds(20, 60, 100, 30)
+timeInput.setBounds(20, 50, 100, 30)
 
 var timeInputSuffix = new JLabel("Minutes. ")
-timeInputSuffix.setBounds(125, 60, 100, 30)
+timeInputSuffix.setBounds(125, 50, 100, 30)
 
 var timeInputError = new JLabel()
-timeInputError.setBounds(200, 60, 200, 30)
+timeInputError.setBounds(200, 50, 200, 30)
+
+var notifyCheckbox = new JCheckBox("Notify me when the program execution ends.")
+notifyCheckbox.setBounds(20, 80, 1000, 30)
+notifyCheckbox.Selected = true
 
 var startButton = new JButton("Start")
-startButton.setBounds(20, 110, 80, 30)
+startButton.setBounds(20, 120, 80, 30)
 
 var closeButton = new JButton("Stop")
-closeButton.setBounds(140, 110, 80, 30)
+closeButton.setBounds(140, 120, 80, 30)
 closeButton.setEnabled(false)
 
 var startTimeLabel = new JLabel()
-startTimeLabel.setBounds(20, 140, 1000, 50)
+startTimeLabel.setBounds(20, 150, 1000, 50)
 
 var endTimeLabel = new JLabel()
-endTimeLabel.setBounds(20, 160, 1000, 50)
+endTimeLabel.setBounds(20, 170, 1000, 50)
 
 
 var ftr = "<html>Credits: Aravind R Pillai | Visit <a href=\"\">www.aravindrpillai.com</a> for more details.</html>"
@@ -59,6 +63,7 @@ frame.add(timeInputLabel)
 frame.add(timeInput)
 frame.add(timeInputSuffix)
 frame.add(timeInputError)
+frame.add(notifyCheckbox)
 frame.add(startButton)
 frame.add(closeButton)
 frame.add(startTimeLabel)
@@ -159,6 +164,32 @@ public class MouseHandler implements Runnable {
     var stopMethod = stopButtonClicked ? "Manually Stopped" : "Auto Stop"
     endTimeLabel.setText("Program ended at "+new Date()+" | "+stopMethod)
     startButton.setEnabled(true)
+    if((not stopButtonClicked) and notifyCheckbox.Selected){
+      makeBeep()
+    }
+  }
+  
+  function makeBeep(){
+    var buf = new byte[1]
+    var af = new javax.sound.sampled.AudioFormat(44100 as float, 8, 1, true, false)
+    var sdl = javax.sound.sampled.AudioSystem.getSourceDataLine(af)
+    sdl.open()
+    sdl.start()
+    var beepCount = 5
+    var j = 0
+    while(j <= beepCount){
+      var i = 0
+      while (i < 500 * 44100 as float / 1000) {
+        var angle = i / (44100 as float / 440) * 2.0 * Math.PI
+        buf[0] = (Math.sin(angle) * 100) as byte
+        sdl.write(buf, 0, 1)
+        i++
+      }
+      Thread.sleep(700)
+      j++
+    }
+    sdl.drain()
+    sdl.stop()
   }
 }
 
