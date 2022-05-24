@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>D:\Keep-System-Awake\KeepMeAwakeWithJFrame.jar</jar>
+  <outfile>D:\Keep-System-Awake\KeepMeAwakeWithJFrame.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl>www.aravindrpillai.com</supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>C:\Users\HP\Downloads\KSA-main\KSA-main\icon.ico</icon>
+  <singleInstance>
+    <mutexName>systemalive</mutexName>
+    <windowTitle>Keep System Alive</windowTitle>
+  </singleInstance>
+  <classPath>
+    <mainClass>Launcher</mainClass>
+    <cp>SystemAwake.class</cp>
+  </classPath>
+  <jre>
+    <path></path>
+    <bundledJre64Bit>false</bundledJre64Bit>
+    <bundledJreAsFallback>false</bundledJreAsFallback>
+    <minVersion>1.6.0_11</minVersion>
+    <maxVersion>1.8.0_281</maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <runtimeBits>64/32</runtimeBits>
+    <initialHeapSize>1048</initialHeapSize>
+    <initialHeapPercent>10</initialHeapPercent>
+    <maxHeapSize>2048</maxHeapSize>
+    <maxHeapPercent>80</maxHeapPercent>
+    <opt>-Denv.env=prod=&quot;%env=prod%&quot;</opt>
+  </jre>
+  <versionInfo>
+    <fileVersion>1.1.1.1</fileVersion>
+    <txtFileVersion>free form</txtFileVersion>
+    <fileDescription>Keep  System Awake</fileDescription>
+    <copyright>Aravind Copyright</copyright>
+    <productVersion>1.1.1.1</productVersion>
+    <txtProductVersion>free form</txtProductVersion>
+    <productName>Keep System Awake</productName>
+    <companyName>Aravind Softwares</companyName>
+    <internalName>Keep System Awake</internalName>
+    <originalFilename>KSA.exe</originalFilename>
+    <trademarks>Keep System Awake</trademarks>
+    <language>ENGLISH_US</language>
+  </versionInfo>
+  <messages>
+    <startupErr>An error occurred while starting the application.</startupErr>
+    <bundledJreErr>This application requires a Java Runtime Environment.</bundledJreErr>
+    <jreVersionErr>This application requires a Java Runtime Environment</jreVersionErr>
+    <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.</launcherErr>
+    <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>
+  </messages>
+</launch4jConfig>
